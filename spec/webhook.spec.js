@@ -37,7 +37,7 @@ describe('Test Webhook', () => {
       self = sinon.spy(emitter, 'emit');
       send.process.call(
         { emit: self, logger }, {
-          body: {
+          data: {
             k1: 'v1',
             k2: 'v2',
           },
@@ -50,7 +50,7 @@ describe('Test Webhook', () => {
     executeAction.then(() => {
       expect(nockObj.isDone());
       expect(self.calledTwice).to.be.true;
-      expect(self.args[0][1].body).to.eql(webhookReturnObj);
+      expect(self.args[0][1].data).to.eql(webhookReturnObj);
       expect(self.args[1][0]).to.eql('end');
       done();
     });
@@ -79,7 +79,7 @@ describe('Test Webhook', () => {
       self = sinon.spy(emitter, 'emit');
       send.process.call(
         { emit: self, logger }, {
-          body: {
+          data: {
             k1: 'v1',
             k2: 'v2',
           },
@@ -93,7 +93,7 @@ describe('Test Webhook', () => {
     executeAction.then(() => {
       expect(nockObj.isDone());
       expect(self.calledTwice).to.be.true;
-      expect(self.args[0][1].body).to.eql(webhookReturnObj);
+      expect(self.args[0][1].data).to.eql(webhookReturnObj);
       expect(self.args[1][0]).to.eql('end');
       done();
     });
@@ -121,7 +121,7 @@ describe('Test Webhook', () => {
       self = sinon.spy(emitter, 'emit');
       send.process.call(
         { emit: self, logger }, {
-          body: {
+          data: {
             k1: 'v1',
             k2: 'v2',
           },
@@ -133,7 +133,7 @@ describe('Test Webhook', () => {
     executeAction.then(() => {
       expect(nockObj.isDone());
       expect(self.calledTwice).to.be.true;
-      expect(self.args[0][1].body).to.eql({
+      expect(self.args[0][1].data).to.eql({
         responseBody: '{"message":"ok","other":"returned"}',
       });
       expect(self.args[1][0]).to.eql('end');
@@ -157,7 +157,7 @@ describe('Test Webhook', () => {
       self = sinon.spy(emitter, 'emit');
       getMethod.process.call(
         { emit: self, logger }, {
-          body: {
+          data: {
             k1: 'v1',
             k2: 'v2',
           },
@@ -173,7 +173,7 @@ describe('Test Webhook', () => {
       expect(nockObj.isDone());
       expect(self.calledTwice).to.be.true;
       expect(self.args[0][0]).to.eql('data');
-      expect(self.args[0][1].body).to.eql(webhookReturnObj);
+      expect(self.args[0][1].data).to.eql(webhookReturnObj);
       expect(self.args[1][0]).to.eql('end');
       done();
     });
@@ -196,7 +196,7 @@ describe('Test Webhook', () => {
       self = sinon.spy(emitter, 'emit');
       getMethod.process.call(
         { emit: self, logger }, {
-          body: {
+          data: {
             k1: 'v1',
             k2: 'v2',
           },
@@ -215,7 +215,7 @@ describe('Test Webhook', () => {
       expect(nockObj.isDone());
       expect(self.calledTwice).to.be.true;
       expect(self.args[0][0]).to.eql('data');
-      expect(self.args[0][1].body).to.eql(webhookReturnObj);
+      expect(self.args[0][1].data).to.eql(webhookReturnObj);
       expect(self.args[1][0]).to.eql('end');
       done();
     });
@@ -238,7 +238,7 @@ describe('Test Webhook', () => {
       self = sinon.spy(emitter, 'emit');
       getMethod.process.call(
         { emit: self, logger }, {
-          body: {
+          data: {
             k1: 'v1',
             k2: 'v2',
           },
@@ -264,7 +264,7 @@ describe('Test Webhook', () => {
   it('Inbound', () => {
     const msg = {
       id: '1',
-      body: {
+      data: {
         k1: 'v1',
         k2: 'v2',
       },
@@ -287,9 +287,9 @@ describe('Test Webhook', () => {
     });
     executeAction.then(() => {
       expect(self.args[0][1]).to.be.not.udefined;
-      expect(self.args[0][1].body).to.be.not.udefined;
-      expect(self.args[0][1].body._query).to.be.not.udefined;
-      expect(self.args[0][1].body._url).to.eql('test');
+      expect(self.args[0][1].data).to.be.not.udefined;
+      expect(self.args[0][1].data._query).to.be.not.udefined;
+      expect(self.args[0][1].data._url).to.eql('test');
       expect(self.args[0]).to.eql(['data', msg]);
       expect(self.args[1][0]).to.eql('end');
     });
@@ -298,7 +298,7 @@ describe('Test Webhook', () => {
   it('Inbound with query', () => {
     const msg = {
       id: '1',
-      body: {
+      data: {
         k1: 'v1',
         k2: 'v2',
       },
@@ -324,9 +324,9 @@ describe('Test Webhook', () => {
     });
     executeAction.then(() => {
       expect(self.args[0][1]).to.be.not.udefined;
-      expect(self.args[0][1].body).to.be.not.udefined;
-      expect(self.args[0][1].body._query).to.eql({ baz: 'boo' });
-      expect(self.args[0][1].body._url).to.eql('test');
+      expect(self.args[0][1].data).to.be.not.udefined;
+      expect(self.args[0][1].data._query).to.eql({ baz: 'boo' });
+      expect(self.args[0][1].data._url).to.eql('test');
       expect(self.args[0]).to.eql(['data', msg]);
       expect(self.args[1][0]).to.eql('end');
     });

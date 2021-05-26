@@ -1,4 +1,4 @@
-# webhook-component
+# webhook-component-oih
 ## Table of Contents
 
 * [General information](#general-information)
@@ -13,7 +13,7 @@
 
 ## Description
 ### Purpose
-An open source component for sending and receiving [WebHooks](https://en.wikipedia.org/wiki/Webhook) on [elastic.io platform](https://www.elastic.io "elastic.io platform"). 
+An open source component for sending and receiving [WebHooks](https://en.wikipedia.org/wiki/Webhook) on [Open Integration Hub platform](https://www.openintegrationhub.com "Open Integration Hub platform"). 
 
 ## Credentials
 Webhook component supports the following authorisation types:
