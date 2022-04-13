@@ -10,7 +10,7 @@
     "node": ">=12.13.0"
   },
   "author": "elastic.io GmbH",
-  "license": "Apache License 2.0",
+  "license": "Apache-2.0",
   "dependencies": {
     "@openintegrationhub/ferryman": "^1.6.2",
     "node-uuid": "1.4.8",
