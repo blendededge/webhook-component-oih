@@ -12,6 +12,7 @@
   "author": "elastic.io GmbH",
   "license": "Apache-2.0",
   "dependencies": {
+    "@blendededge/ferryman-extensions": "^1.0.3",
     "@openintegrationhub/ferryman": "^1.6.2",
     "node-uuid": "1.4.8",
     "request": "2.88.x"
