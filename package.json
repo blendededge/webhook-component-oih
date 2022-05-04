@@ -1,6 +1,6 @@
 {
   "name": "webhook-component-oih",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Forked from elastic.io webhook component for Open Integration Hub platform",
   "scripts": {
     "pretest": "eslint spec lib --fix",
