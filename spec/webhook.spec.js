@@ -41,6 +41,7 @@ describe('Test Webhook', () => {
             k1: 'v1',
             k2: 'v2',
           },
+          metadata: {},
         }, {
           uri: 'http://www.example.com/test',
           method: 'PUT',
@@ -83,6 +84,7 @@ describe('Test Webhook', () => {
             k1: 'v1',
             k2: 'v2',
           },
+          metadata: {},
         }, {
           uri: 'http://www.example.com/test',
           secret: 'theSecret',
@@ -125,6 +127,7 @@ describe('Test Webhook', () => {
             k1: 'v1',
             k2: 'v2',
           },
+          metadata: {},
         }, {
           uri: 'http://www.example.com/test',
         },
@@ -164,6 +167,7 @@ describe('Test Webhook', () => {
           headers: {
             test: 'header',
           },
+          metadata: {},
         }, {
           uri: 'http://www.example.com/test',
         },
@@ -204,6 +208,7 @@ describe('Test Webhook', () => {
             test: 'header',
           },
           url: 'test',
+          metadata: {},
         }, {
           uri: 'http://www.example.com/test',
           secret: 'theSecret',
@@ -245,6 +250,7 @@ describe('Test Webhook', () => {
           headers: {
             test: 'header',
           },
+          metadata: {},
         }, {
           uri: 'http://www.example.com/test?',
           secret: 'theSecret',
@@ -272,6 +278,7 @@ describe('Test Webhook', () => {
         test: 'header',
       },
       url: 'test',
+      metadata: {},
     };
 
     const executeAction = new Promise((resolve) => {
@@ -309,6 +316,7 @@ describe('Test Webhook', () => {
       query: {
         baz: 'boo',
       },
+      metadata: {},
     };
 
     const executeAction = new Promise((resolve) => {
