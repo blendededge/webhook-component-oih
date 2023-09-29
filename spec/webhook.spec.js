@@ -2,11 +2,18 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const nock = require('nock');
-const logger = require('@elastic.io/component-logger')();
 
-const send = require('../lib/actions/send.js');
-const getMethod = require('../lib/helper/get.js');
-const receive = require('../lib/triggers/receive.js');
+const send = require('../lib/actions/send');
+const getMethod = require('../lib/helper/get');
+const receive = require('../lib/triggers/receive');
+
+const logger = {
+  child: () => ({
+    debug: () => {},
+    info: () => {},
+    error: () => {},
+  }),
+};
 
 describe('Test Webhook', () => {
   afterEach(() => {
@@ -35,18 +42,16 @@ describe('Test Webhook', () => {
         },
       };
       self = sinon.spy(emitter, 'emit');
-      send.process.call(
-        { emit: self, logger }, {
-          data: {
-            k1: 'v1',
-            k2: 'v2',
-          },
-          metadata: {},
-        }, {
-          uri: 'http://www.example.com/test',
-          method: 'PUT',
+      send.process.call({ emit: self, logger }, {
+        data: {
+          k1: 'v1',
+          k2: 'v2',
         },
-      );
+        metadata: {},
+      }, {
+        uri: 'http://www.example.com/test',
+        method: 'PUT',
+      });
     });
     executeAction.then(() => {
       expect(nockObj.isDone());
@@ -78,19 +83,17 @@ describe('Test Webhook', () => {
         },
       };
       self = sinon.spy(emitter, 'emit');
-      send.process.call(
-        { emit: self, logger }, {
-          data: {
-            k1: 'v1',
-            k2: 'v2',
-          },
-          metadata: {},
-        }, {
-          uri: 'http://www.example.com/test',
-          secret: 'theSecret',
-          method: 'PUT',
+      send.process.call({ emit: self, logger }, {
+        data: {
+          k1: 'v1',
+          k2: 'v2',
         },
-      );
+        metadata: {},
+      }, {
+        uri: 'http://www.example.com/test',
+        secret: 'theSecret',
+        method: 'PUT',
+      });
     });
     executeAction.then(() => {
       expect(nockObj.isDone());
@@ -121,17 +124,15 @@ describe('Test Webhook', () => {
         },
       };
       self = sinon.spy(emitter, 'emit');
-      send.process.call(
-        { emit: self, logger }, {
-          data: {
-            k1: 'v1',
-            k2: 'v2',
-          },
-          metadata: {},
-        }, {
-          uri: 'http://www.example.com/test',
+      send.process.call({ emit: self, logger }, {
+        data: {
+          k1: 'v1',
+          k2: 'v2',
         },
-      );
+        metadata: {},
+      }, {
+        uri: 'http://www.example.com/test',
+      });
     });
     executeAction.then(() => {
       expect(nockObj.isDone());
@@ -158,20 +159,18 @@ describe('Test Webhook', () => {
         },
       };
       self = sinon.spy(emitter, 'emit');
-      getMethod.process.call(
-        { emit: self, logger }, {
-          data: {
-            k1: 'v1',
-            k2: 'v2',
-          },
-          headers: {
-            test: 'header',
-          },
-          metadata: {},
-        }, {
-          uri: 'http://www.example.com/test',
+      getMethod.process.call({ emit: self, logger }, {
+        data: {
+          k1: 'v1',
+          k2: 'v2',
         },
-      );
+        headers: {
+          test: 'header',
+        },
+        metadata: {},
+      }, {
+        uri: 'http://www.example.com/test',
+      });
     });
     executeAction.then(() => {
       expect(nockObj.isDone());
@@ -198,22 +197,20 @@ describe('Test Webhook', () => {
         },
       };
       self = sinon.spy(emitter, 'emit');
-      getMethod.process.call(
-        { emit: self, logger }, {
-          data: {
-            k1: 'v1',
-            k2: 'v2',
-          },
-          headers: {
-            test: 'header',
-          },
-          url: 'test',
-          metadata: {},
-        }, {
-          uri: 'http://www.example.com/test',
-          secret: 'theSecret',
+      getMethod.process.call({ emit: self, logger }, {
+        data: {
+          k1: 'v1',
+          k2: 'v2',
         },
-      );
+        headers: {
+          test: 'header',
+        },
+        url: 'test',
+        metadata: {},
+      }, {
+        uri: 'http://www.example.com/test',
+        secret: 'theSecret',
+      });
     });
 
     executeAction.then(() => {
@@ -241,21 +238,19 @@ describe('Test Webhook', () => {
         },
       };
       self = sinon.spy(emitter, 'emit');
-      getMethod.process.call(
-        { emit: self, logger }, {
-          data: {
-            k1: 'v1',
-            k2: 'v2',
-          },
-          headers: {
-            test: 'header',
-          },
-          metadata: {},
-        }, {
-          uri: 'http://www.example.com/test?',
-          secret: 'theSecret',
+      getMethod.process.call({ emit: self, logger }, {
+        data: {
+          k1: 'v1',
+          k2: 'v2',
         },
-      );
+        headers: {
+          test: 'header',
+        },
+        metadata: {},
+      }, {
+        uri: 'http://www.example.com/test?',
+        secret: 'theSecret',
+      });
     });
     executeAction.then(() => {
       expect(nockObj.isDone());
